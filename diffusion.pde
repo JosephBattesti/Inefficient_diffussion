@@ -56,3 +56,29 @@ void diffuse() {
        }
     }
 }
+
+float [] meanx(Volume[][] Matrice){
+  float [] meanx= new float[Matrice.length];
+  for (int x  = 0; x < Matrice.length; x++) {
+    int sum=0;
+    for (int y = 0; y < Matrice[0].length; y++ ) {
+      sum+=Matrice[x][y].GetTotParticles();
+    }
+    meanx[x]=sum/Matrice.length;
+  }
+        
+  return meanx;
+} 
+
+float [] meany(Volume[][] Matrice){
+  float [] meany= new float[Matrice[0].length];
+  for (int y = 0; y < Matrice[0].length; y++ ) {
+    int sum=0;
+    for (int x  = 0; x < Matrice.length; x++){
+      sum+=Matrice[x][y].GetTotParticles();
+    }
+    meany[y]=sum/Matrice[0].length;
+  }
+        
+  return meany;
+} 

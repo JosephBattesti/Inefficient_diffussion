@@ -57,6 +57,10 @@ class Volume {
   int GetBParticles() {
   return npB;
   }
+  
+  int GetTotParticles() {
+  return npB+npG+npR;
+  }
 
  boolean isNotEmpty(){
 if(npR==0 && npG==0 && npB==0){

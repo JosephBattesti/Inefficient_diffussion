@@ -34,25 +34,29 @@ void setup() {
   
   for (int x  = 0; x < W; x++) {
     for (int y = 0; y < H; y++ ) {
-
+      
    if (ci[x][y]<230){
-     print(x,y);
      Matrice[x+4][y+6].addBParticle(400);
       Matrice[x+3][y+6].addGParticle(400);
-     
+         }
        }
      }
-    }
   videoExport = new VideoExport(this);
   videoExport.startMovie();
   }
 
 void draw() {
+  
  D+=0.02*D;
  background(0);
  stroke(0);
  diffuse(); 
+ float [] mex=meanx(Matrice);
+ float [] mey=meany(Matrice);
+ print(mex[(Mx-1)/2]);
+ 
  videoExport.saveFrame();
+ 
 }
 
  void keyPressed() {
