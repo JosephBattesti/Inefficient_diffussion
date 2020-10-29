@@ -1,3 +1,8 @@
+import supercollider.*;
+import oscP5.*;
+import netP5.*;
+import com.hamoid.*;
+
 int N=255;
 int pasx=8;
 int pasy=8;
@@ -6,8 +11,8 @@ int Mx;
 int My;
 float D=0.2;
 PImage img;
-import com.hamoid.*;
 VideoExport videoExport;
+Synth S;
 
 void setup() {
   size(1000,500);
@@ -33,16 +38,19 @@ void setup() {
   float[][] ci=reduce(img,H,W);
   
   for (int x  = 0; x < W; x++) {
-    for (int y = 0; y < H; y++ ) {
-      
-   if (ci[x][y]<230){
-     Matrice[x+4][y+6].addBParticle(400);
-      Matrice[x+3][y+6].addGParticle(400);
+    for (int y = 0; y < H; y++ ) {  
+       if (ci[x][y]<230){
+         Matrice[x+4][y+6].addBParticle(400);
+         Matrice[x+3][y+6].addGParticle(400);
          }
        }
      }
   videoExport = new VideoExport(this);
   videoExport.startMovie();
+  
+  S = new Synth("Grains");
+  S.create();
+  
   }
 
 void draw() {
@@ -54,6 +62,7 @@ void draw() {
  float [] mex=meanx(Matrice);
  float [] mey=meany(Matrice);
  print(mex[(Mx-1)/2]);
+ S.set("rate",map(mex[(Mx-1)/2],16,32,1/2,3));
  
  videoExport.saveFrame();
  
